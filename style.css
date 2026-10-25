@@ -1,0 +1,533 @@
+/* ---------- 1. СКИДАННЯ ТА БАЗОВІ СТИЛІ ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.55;
+  color: #f4ece6;
+  background-color: #140607;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+address {
+  font-style: normal;
+}
+
+.screen {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+
+/* ---------- 2. SVG-ШУМ (FILM GRAIN) ---------- */
+.hero-bg::after,
+.album-cover::after,
+.tour-img::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 220px 220px;
+  mix-blend-mode: overlay;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+
+/* ---------- 3. ШАПКА ТА КНОПКИ ---------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  background: linear-gradient(#140607, transparent);
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: lowercase;
+}
+
+.logo span {
+  margin-left: 6px;
+  font-weight: 300;
+}
+
+.menu {
+  display: flex;
+  gap: 28px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: lowercase;
+}
+
+.menu a {
+  padding-bottom: 3px;
+  transition: border-bottom 0.2s;
+}
+
+.menu a:hover {
+  border-bottom: 1px solid #f4ece6;
+}
+
+.btn-group {
+  margin-top: 8px;
+}
+
+.btn {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 12px 28px;
+  border: 1px solid currentColor;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+  color: #140607;
+  background-color: #f4ece6;
+  transform: translateY(-3px);
+}
+
+.btn.dark {
+  color: #f4ece6;
+  background-color: #3a0a14;
+  border-color: #3a0a14;
+}
+
+.btn.dark:hover {
+  color: #3a0a14;
+  background-color: transparent;
+}
+
+.btn.outline {
+  color: #3a0a14;
+  border-color: #3a0a14;
+}
+
+.btn.outline:hover {
+  color: #f4ece6;
+  background-color: #3a0a14;
+}
+
+
+/* ---------- 4. ЕКРАН 1: HERO ---------- */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("images/LP4.jpg");
+  background-size: cover;
+  background-position: center;
+  background-color: #3a0a14;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: 100px;
+  font-weight: 200;
+  letter-spacing: 8px;
+  text-transform: lowercase;
+  text-shadow: 0 6px 40px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ---------- 5. ЕКРАН 2: АЛЬБОМ ---------- */
+.album {
+  display: flex;
+  align-items: center;
+  padding: 100px 40px;
+  color: #3a0a14;
+  background-color: #f4ece6;
+}
+
+.album-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.album-cover {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  background-image: url("images/cover.jpg");
+  background-size: cover;
+  background-position: center;
+  background-color: #6d0f1f;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.album-info h2 {
+  font-size: 64px;
+  font-weight: 200;
+  letter-spacing: 4px;
+}
+
+.album-info h3 {
+  margin-bottom: 18px;
+  font-weight: 400;
+  letter-spacing: 6px;
+  text-transform: lowercase;
+}
+
+.album-info p {
+  max-width: 460px;
+  margin-bottom: 24px;
+}
+
+
+/* ---------- 6. ЕКРАН 3: ВІДЕОКЛІП ---------- */
+.video-section {
+  padding: 100px 40px;
+  background-color: #140607;
+  text-align: center;
+}
+
+.video-container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.video-section h2 {
+  margin-bottom: 30px;
+  font-size: 56px;
+  font-weight: 200;
+  letter-spacing: 5px;
+  text-transform: lowercase;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+/* ---------- 7. ЕКРАН 4: ТУР ---------- */
+.tour {
+  padding: 110px 40px 40px;
+  background-color: #000000;
+}
+
+.tour-container {
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.tour h2 {
+  position: relative;
+  z-index: 2;
+  margin-bottom: -18px;
+  padding-left: 60px;
+  font-size: 72px;
+  font-weight: 200;
+  line-height: 1.1;
+  letter-spacing: 4px;
+}
+
+.tour-content {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.tour-img {
+  position: relative;
+  min-height: 800px;
+  background-image: url("images/tour.jpg");
+  background-size: cover;
+  background-position: center;
+  background-color: #6d0f1f;
+}
+
+.tour-schedule {
+  padding-left: 10px;
+}
+
+.tour-list {
+  list-style: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.tour-list li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.tour-list li:hover {
+  background-color: rgba(193, 18, 31, 0.2);
+  transform: translateX(8px);
+}
+
+.tour-list .date {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.tour-list .location {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 8px;
+  font-size: 12px;
+  text-transform: lowercase;
+}
+
+.ticket-btns {
+  display: flex;
+  gap: 6px;
+}
+
+.tbtn {
+  display: inline-block;
+  padding: 10px 18px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #000000;
+  background-color: #ffffff;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.tbtn:hover {
+  color: #ffffff;
+  background-color: #c1121f;
+}
+
+.tour-follow {
+  margin-top: 28px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.tour-follow .tbtn {
+  margin-top: 16px;
+  padding: 14px 26px;
+}
+
+.powered {
+  margin-top: 28px;
+  text-align: right;
+  font-size: 9px;
+  opacity: 0.7;
+}
+
+
+/* ---------- 8. КОНТАКТИ ТА РОЗСИЛКА ---------- */
+.contact {
+  padding: 90px 40px 30px;
+  text-align: center;
+  background-color: #140607;
+}
+
+.contact h2 {
+  margin-bottom: 40px;
+  font-weight: 200;
+  letter-spacing: 5px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto 60px;
+  text-align: left;
+}
+
+.contact-card h4 {
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+  text-transform: lowercase;
+  color: #e03a3a;
+}
+
+.contact-card p {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.newsletter label {
+  display: block;
+  margin-bottom: 14px;
+  letter-spacing: 3px;
+}
+
+.newsletter .form-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.newsletter input {
+  width: 280px;
+  padding: 12px 16px;
+  color: inherit;
+  background-color: transparent;
+  border: 1px solid #f4ece6;
+}
+
+.newsletter input:focus {
+  outline: 2px solid #c1121f;
+}
+
+.newsletter button {
+  padding: 12px 26px;
+  color: #f4ece6;
+  background-color: #c1121f;
+  border: none;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.newsletter button:hover {
+  background-color: #e03a3a;
+}
+
+footer {
+  margin-top: 60px;
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+
+/* ---------- 9. АДАПТИВНІСТЬ ДЛЯ МОБІЛЬНИХ ---------- */
+@media (max-width: 850px) {
+  .site-header {
+    padding: 14px 18px;
+  }
+
+  .menu {
+    gap: 14px;
+    font-size: 12px;
+  }
+
+  .hero-bg,
+  .tour-img,
+  .album-cover {
+    display: none;
+  }
+
+  .hero {
+    background-color: #6d0f1f;
+  }
+
+  .album-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .album-info p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .video-section {
+    padding: 60px 18px;
+  }
+
+  .video-section h2 {
+    font-size: 36px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tour {
+    padding: 90px 18px 30px;
+  }
+
+  .tour h2 {
+    padding-left: 0;
+    margin-bottom: 20px;
+  }
+
+  .tour-content {
+    grid-template-columns: 1fr;
+  }
+
+  .tour-schedule {
+    padding-left: 0;
+  }
+
+  .tour-list li {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket-btns {
+    margin-top: 6px;
+  }
+}
